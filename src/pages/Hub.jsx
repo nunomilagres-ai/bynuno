@@ -17,8 +17,8 @@ const APPS = [
   {
     id: 'cashly',
     name: 'Cashly',
-    tagline: 'Finanças pessoais',
-    description: 'Controlo de despesas, receitas e orçamentos. Uma visão clara do teu dinheiro.',
+    tagline: 'Gestão financeira',
+    description: 'Contas bancárias, facturas, orçamentos, fluxo de caixa e resultados. Controlo financeiro completo.',
     url: 'https://cashly.bynuno.com',
     emoji: '💰',
     gradient: 'from-amber-500/20 to-orange-600/20',
