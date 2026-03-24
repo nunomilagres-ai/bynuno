@@ -29,7 +29,7 @@ const APPS = [
   },
   {
     id: 'pim',
-    name: 'UnifiedPIM',
+    name: 'PIM',
     tagline: 'Gestão de produtos',
     description: 'Catálogo de produtos, vendas, análise de margens e integração com o Vinted.',
     url: 'https://pim.bynuno.com',
