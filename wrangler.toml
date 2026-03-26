@@ -1,0 +1,14 @@
+name                   = "bynuno"
+pages_build_output_dir = "dist"
+compatibility_date     = "2024-09-23"
+
+[[d1_databases]]
+binding       = "DB"
+database_name = "bynuno-db"
+database_id   = "07059b70-876a-405c-9f71-74e012071358"
+
+[vars]
+APP_URL = "https://bynuno.com"
+# GOOGLE_CLIENT_ID     -> wrangler pages secret put GOOGLE_CLIENT_ID
+# GOOGLE_CLIENT_SECRET -> wrangler pages secret put GOOGLE_CLIENT_SECRET
+# ALLOWED_EMAIL        -> wrangler pages secret put ALLOWED_EMAIL
