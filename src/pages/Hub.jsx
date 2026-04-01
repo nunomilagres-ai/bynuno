@@ -2,8 +2,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../lib/AuthContext';
+import DonateModal from '../components/DonateModal';
 
 const BYNUNO_NOTES = [
+  {
+    version: '1.4',
+    date: '2026-03-28',
+    title: 'CV Builder',
+    items: [
+      'Nova app cvbuilder.bynuno.com para organizar formação académica e profissional',
+      'Upload de diplomas e certificados (PDF, JPEG, PNG) direto para o Google Drive',
+      'Extração inteligente de dados com Claude AI (nome, instituição, datas, tipo)',
+      'Timeline visual cronológica com filtros por tipo de formação',
+      'Exportação em PDF e partilha pública da timeline',
+    ],
+  },
   {
     version: '1.3',
     date: '2026-03-26',
@@ -158,6 +171,19 @@ const APPS = [
     badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
+    id: 'cvbuilder',
+    name: 'CV Builder',
+    tagline: 'Formação & timeline',
+    description: 'Carrega diplomas e certificados. A IA extrai os dados automaticamente e organiza a tua formação numa timeline visual.',
+    url: 'https://cvbuilder.bynuno.com',
+    emoji: '📋',
+    gradient: 'from-indigo-500/20 to-violet-600/20',
+    border: 'border-indigo-500/30',
+    glow: 'shadow-indigo-500/10',
+    badge: 'Disponível',
+    badgeColor: 'bg-indigo-500/20 text-indigo-400',
+  },
+  {
     id: 'future',
     name: 'Em breve',
     tagline: 'Próxima app',
@@ -232,7 +258,7 @@ function InfoButtonHub() {
 }
 
 function UserAvatar() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   if (!user) return null;
   return (
     <Link to="/profile" className="flex items-center gap-2.5 group no-underline">
@@ -248,6 +274,7 @@ function UserAvatar() {
 }
 
 export default function Hub() {
+  const [donateOpen, setDonateOpen] = useState(false);
   return (
     <div className="min-h-screen bg-[#0a0a0f] flex flex-col">
 
@@ -288,12 +315,18 @@ export default function Hub() {
 
         {/* Footer */}
         <footer className="mt-16 text-center animate-fade-in" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
-          <p className="text-white/20 text-xs">
-            feito com ♥ por nuno
-          </p>
+          <button
+            onClick={() => setDonateOpen(true)}
+            className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-white/30 text-xs hover:text-white/60 hover:border-white/25 transition-all"
+          >
+            <span>💜</span> Apoiar o projeto
+          </button>
+          <p className="text-white/20 text-xs">feito com ♥ por nuno</p>
         </footer>
 
       </div>
+
+      <DonateModal open={donateOpen} onClose={() => setDonateOpen(false)} />
     </div>
   )
 }
