@@ -6,6 +6,18 @@ import DonateModal from '../components/DonateModal';
 
 const BYNUNO_NOTES = [
   {
+    version: '1.5',
+    date: '2026-06-15',
+    title: 'Notes — notas pessoais com IA',
+    items: [
+      'Nova app notes.bynuno.com para notas pessoais organizadas por temas',
+      'Temas personalizados com emoji e cor (ex: "Filmes", "Presentes de Natal 2026", "Viagens")',
+      'Editor Markdown com preview e auto-save',
+      'Lembretes/tarefas com notificações nativas do browser',
+      'IA: fotografa uma nota manuscrita e Claude Vision transcreve e classifica automaticamente',
+    ],
+  },
+  {
     version: '1.4',
     date: '2026-03-28',
     title: 'CV Builder',
@@ -182,6 +194,19 @@ const APPS = [
     glow: 'shadow-indigo-500/10',
     badge: 'Disponível',
     badgeColor: 'bg-indigo-500/20 text-indigo-400',
+  },
+  {
+    id: 'notes',
+    name: 'Notes',
+    tagline: 'Notas pessoais',
+    description: 'Notas por temas ("Filmes", "Presentes de Natal", "Viagens…"), editor Markdown, lembretes com notificações e digitalização de notas manuscritas com IA.',
+    url: 'https://notes.bynuno.com',
+    emoji: '🗒️',
+    gradient: 'from-amber-500/20 to-orange-600/20',
+    border: 'border-amber-500/30',
+    glow: 'shadow-amber-500/10',
+    badge: 'Disponível',
+    badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
     id: 'future',
