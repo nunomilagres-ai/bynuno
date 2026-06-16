@@ -6,6 +6,21 @@ import DonateModal from '../components/DonateModal';
 
 const BYNUNO_NOTES = [
   {
+    version: '1.6',
+    date: '2026-06-16',
+    title: 'Notes — calendário, recorrência e dashboard',
+    items: [
+      'Calendário mensal com pontos por dia (notas 🟡 e lembretes 🔴)',
+      'Tarefas recorrentes: diária, semanal, mensal e anual — próxima ocorrência criada automaticamente',
+      'Dashboard de tarefas com secções Vencidas / Hoje / Futuras',
+      'Criar tarefas diretamente dentro de cada nota (com recorrência)',
+      '60 emojis organizados por categoria: Saúde, Finanças, Férias, Entretenimento, Casa',
+      'Hora opcional nos lembretes; datas no passado permitidas',
+      'Sidebar de temas colapsável com dropdown de tema quando escondida',
+      'Editar lembretes inline, visão "Todas as notas" e "Geral" alinhadas à esquerda',
+    ],
+  },
+  {
     version: '1.5',
     date: '2026-06-15',
     title: 'Notes — notas pessoais com IA',
