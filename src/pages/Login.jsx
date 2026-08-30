@@ -17,10 +17,14 @@ export default function Login() {
 
   const params = new URLSearchParams(window.location.search);
   const error  = params.get('error');
+  const next   = params.get('next') || params.get('redirect') || '';
 
   useEffect(() => {
-    if (!loading && user) navigate('/', { replace: true });
-  }, [user, loading, navigate]);
+    if (!loading && user) {
+      if (next) window.location.replace(next);
+      else navigate('/', { replace: true });
+    }
+  }, [user, loading, navigate, next]);
 
   if (loading) return null;
 
@@ -50,7 +54,7 @@ export default function Login() {
 
         {/* Login button */}
         <a
-          href="/api/auth/google"
+          href={`/api/auth/google${next ? `?next=${encodeURIComponent(next)}` : ''}`}
           className="flex items-center justify-center gap-3 w-full px-5 py-3.5 rounded-xl
             bg-white/5 border border-white/10 text-white font-medium text-sm
             hover:bg-white/10 hover:border-white/20 transition-all duration-200"
