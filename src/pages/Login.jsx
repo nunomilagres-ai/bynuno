@@ -29,25 +29,25 @@ export default function Login() {
   if (loading) return null;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex flex-col items-center justify-center px-5">
+    <div className="min-h-screen bg-bg flex flex-col items-center justify-center px-5">
 
       {/* Ambient glow */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[30%] w-[600px] h-[600px] bg-violet-600/5 rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] left-[30%] w-[600px] h-[600px] bg-glow rounded-full blur-[120px]" />
       </div>
 
       <div className="relative w-full max-w-sm animate-fade-in">
 
         {/* Logo */}
         <div className="text-center mb-10">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white/30">bynuno.com</span>
-          <h1 className="text-3xl font-bold text-white mt-3 mb-2">Bem-vindo</h1>
-          <p className="text-white/40 text-sm">Entra com a tua conta Google para continuar.</p>
+          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-faint">bynuno.com</span>
+          <h1 className="text-3xl font-bold text-ink mt-3 mb-2">Bem-vindo</h1>
+          <p className="text-muted text-sm">Entra com a tua conta Google para continuar.</p>
         </div>
 
         {/* Error */}
         {error && (
-          <div className="mb-6 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
+          <div className="mb-6 px-4 py-3 rounded-xl bg-danger-soft border border-danger-line text-danger text-sm text-center">
             {ERROR_MESSAGES[error] || 'Ocorreu um erro. Tenta de novo.'}
           </div>
         )}
@@ -56,8 +56,8 @@ export default function Login() {
         <a
           href={`/api/auth/google${next ? `?next=${encodeURIComponent(next)}` : ''}`}
           className="flex items-center justify-center gap-3 w-full px-5 py-3.5 rounded-xl
-            bg-white/5 border border-white/10 text-white font-medium text-sm
-            hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+            bg-surface border border-line text-ink font-medium text-sm
+            hover:bg-surface-2 hover:border-accent-line transition-all duration-200"
         >
           <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -68,7 +68,7 @@ export default function Login() {
           Continuar com Google
         </a>
 
-        <p className="mt-8 text-center text-white/20 text-xs">
+        <p className="mt-8 text-center text-faint text-xs">
           Acesso restrito ao proprietário
         </p>
       </div>

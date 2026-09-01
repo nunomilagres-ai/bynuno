@@ -6,30 +6,36 @@ const stripePromise = loadStripe('pk_test_51TFAg5LaMMiVnZ7jk7dTIuRfzekIDbAiHnni0
 
 const PRESETS = [2, 5, 10];
 
-const STRIPE_APPEARANCE = {
-  theme: 'night',
-  variables: {
-    colorBackground:       '#13131a',
-    colorSurface:          '#1a1a24',
-    colorText:             '#ffffff',
-    colorTextSecondary:    'rgba(255,255,255,0.4)',
-    colorTextPlaceholder:  'rgba(255,255,255,0.2)',
-    colorPrimary:          '#a78bfa',
-    colorDanger:           '#f87171',
-    borderRadius:          '12px',
-    fontSizeBase:          '14px',
-  },
-  rules: {
-    '.Input': {
-      border:     '1px solid rgba(255,255,255,0.1)',
-      boxShadow:  'none',
+// O Stripe Elements não lê CSS custom properties — os valores têm de ser lidos
+// do DOM em runtime para seguir o tema activo (escuro/claro) em vez de fixos.
+function stripeAppearance() {
+  const css = getComputedStyle(document.documentElement);
+  const v = (name) => css.getPropertyValue(name).trim();
+  return {
+    theme: 'night',
+    variables: {
+      colorBackground:      v('--surface'),
+      colorSurface:         v('--surface-2'),
+      colorText:            v('--text'),
+      colorTextSecondary:   v('--text-2'),
+      colorTextPlaceholder: v('--text-3'),
+      colorPrimary:         v('--accent'),
+      colorDanger:          v('--danger'),
+      borderRadius:         '12px',
+      fontSizeBase:         '14px',
     },
-    '.Input:focus': {
-      border:     '1px solid rgba(255,255,255,0.3)',
-      boxShadow:  'none',
+    rules: {
+      '.Input': {
+        border:    `1px solid ${v('--border')}`,
+        boxShadow: 'none',
+      },
+      '.Input:focus': {
+        border:    `1px solid ${v('--accent-line')}`,
+        boxShadow: 'none',
+      },
     },
-  },
-};
+  };
+}
 
 function PaymentForm({ amount, onSuccess }) {
   const stripe   = useStripe();
@@ -61,14 +67,14 @@ function PaymentForm({ amount, onSuccess }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <PaymentElement options={{ layout: 'tabs' }} />
       {error && (
-        <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+        <div className="px-4 py-3 rounded-xl bg-danger-soft border border-danger-line text-danger text-sm">
           {error}
         </div>
       )}
       <button
         type="submit"
         disabled={!stripe || paying}
-        className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-white/90 disabled:opacity-50 transition-all"
+        className="w-full py-3 rounded-xl bg-ink text-bg font-semibold text-sm hover:opacity-90 disabled:opacity-50 transition-all"
       >
         {paying ? 'A processar…' : `Pagar €${amount}`}
       </button>
@@ -118,20 +124,20 @@ export default function DonateModal({ open, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-5"
+      className="fixed inset-0 bg-overlay backdrop-blur-sm z-50 flex items-center justify-center p-5"
       onClick={e => e.target === e.currentTarget && handleClose()}
     >
-      <div className="bg-[#13131a] border border-white/10 rounded-2xl p-6 w-full max-w-sm animate-fade-in">
+      <div className="bg-surface border border-line rounded-2xl p-6 w-full max-w-sm animate-fade-in">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-base font-semibold text-white">Apoiar o projeto</h2>
-            <p className="text-xs text-white/30 mt-0.5">bynuno.com</p>
+            <h2 className="text-base font-semibold text-ink">Apoiar o projeto</h2>
+            <p className="text-xs text-faint mt-0.5">bynuno.com</p>
           </div>
           <button
             onClick={handleClose}
-            className="text-white/30 hover:text-white/60 w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white/5 transition-all text-lg leading-none"
+            className="text-faint hover:text-muted w-7 h-7 flex items-center justify-center rounded-lg hover:bg-surface-2 transition-all text-lg leading-none"
           >
             ✕
           </button>
@@ -141,11 +147,11 @@ export default function DonateModal({ open, onClose }) {
         {success ? (
           <div className="text-center py-6">
             <div className="text-4xl mb-4">💜</div>
-            <p className="text-white font-semibold">Obrigado!</p>
-            <p className="text-white/40 text-sm mt-2">O teu apoio significa muito.</p>
+            <p className="text-ink font-semibold">Obrigado!</p>
+            <p className="text-muted text-sm mt-2">O teu apoio significa muito.</p>
             <button
               onClick={handleClose}
-              className="mt-6 px-5 py-2.5 rounded-xl bg-white/10 text-white text-sm hover:bg-white/15 transition-all"
+              className="mt-6 px-5 py-2.5 rounded-xl bg-surface-2 text-ink text-sm hover:bg-surface transition-all"
             >
               Fechar
             </button>
@@ -154,7 +160,7 @@ export default function DonateModal({ open, onClose }) {
         /* Step 1: amount selection */
         ) : !clientSecret ? (
           <>
-            <p className="text-white/50 text-sm mb-5 leading-relaxed">
+            <p className="text-muted text-sm mb-5 leading-relaxed">
               Escolhe um valor para apoiar o desenvolvimento das apps.
             </p>
 
@@ -166,8 +172,8 @@ export default function DonateModal({ open, onClose }) {
                   onClick={() => { setPreset(v); setCustom(''); }}
                   className={`py-2.5 rounded-xl text-sm font-medium transition-all border ${
                     !custom && preset === v
-                      ? 'bg-violet-500/20 border-violet-500/50 text-violet-300'
-                      : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10'
+                      ? 'bg-accent-soft border-accent-line text-accent-ink'
+                      : 'bg-surface-2 border-line text-muted hover:bg-surface'
                   }`}
                 >
                   €{v}
@@ -177,7 +183,7 @@ export default function DonateModal({ open, onClose }) {
 
             {/* Custom amount */}
             <div className="relative mb-5">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-sm">€</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-faint text-sm">€</span>
               <input
                 type="number"
                 min="1"
@@ -186,12 +192,12 @@ export default function DonateModal({ open, onClose }) {
                 value={custom}
                 onChange={e => setCustom(e.target.value)}
                 placeholder="Outro valor"
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-3 text-white text-sm placeholder-white/20 focus:outline-none focus:border-white/30 transition-colors"
+                className="w-full bg-surface-2 border border-line rounded-xl pl-8 pr-4 py-3 text-ink text-sm placeholder-faint focus:outline-none focus:border-accent-line transition-colors"
               />
             </div>
 
             {error && (
-              <div className="mb-4 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+              <div className="mb-4 px-4 py-3 rounded-xl bg-danger-soft border border-danger-line text-danger text-sm">
                 {error}
               </div>
             )}
@@ -199,7 +205,7 @@ export default function DonateModal({ open, onClose }) {
             <button
               onClick={handleContinue}
               disabled={loading || !finalAmount || finalAmount < 1 || finalAmount > 100}
-              className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-white/90 disabled:opacity-50 transition-all"
+              className="w-full py-3 rounded-xl bg-ink text-bg font-semibold text-sm hover:opacity-90 disabled:opacity-50 transition-all"
             >
               {loading ? 'A preparar…' : `Continuar com €${finalAmount}`}
             </button>
@@ -211,18 +217,18 @@ export default function DonateModal({ open, onClose }) {
             <div className="flex items-center gap-2 mb-5">
               <button
                 onClick={() => setClientSecret('')}
-                className="text-white/30 hover:text-white/60 transition-colors"
+                className="text-faint hover:text-muted transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
               </button>
-              <span className="text-white/40 text-sm">Pagamento de €{finalAmount}</span>
+              <span className="text-muted text-sm">Pagamento de €{finalAmount}</span>
             </div>
 
             <Elements
               stripe={stripePromise}
-              options={{ clientSecret, appearance: STRIPE_APPEARANCE }}
+              options={{ clientSecret, appearance: stripeAppearance() }}
             >
               <PaymentForm amount={finalAmount} onSuccess={() => setSuccess(true)} />
             </Elements>
