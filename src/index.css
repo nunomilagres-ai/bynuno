@@ -4,12 +4,104 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design system byNuno — ver CLAUDE.md.
+   Os valores em :root são os ESCUROS (o omisso); o bloco de baixo sobrepõe os
+   claros quando o sistema do utilizador os prefere. Não há alternador manual. */
+:root {
+  --bg: #0B0C0E;
+  --surface: #17181C;
+  --surface-2: #1D1F24;
+  --border: #2A2C32;
+  --text: #F1F1EF;
+  --text-2: #A6A8AE;
+  --text-3: #6C6E76;
+  --overlay: rgba(0, 0, 0, 0.5);
+  --shadow: rgba(0, 0, 0, 0.3);
+  /* Barra fixa/scroll por baixo de conteúdo translúcido: fundo próprio, porque
+     a modificação de opacidade do Tailwind (bg-bg/90) não funciona sobre uma var(). */
+  --bg-blur: rgba(11, 12, 14, 0.9);
+
+  /* Acento violeta — identidade do Hub. accent-fill fica igual nos dois temas
+     (é a cor de marca); o resto (accent/soft/line) ajusta-se por tema para
+     manter contraste. */
+  --accent: #A78BFA;
+  --accent-solid: #7C3AED;
+  --accent-fill: #7C3AED;
+  --accent-fill-hover: #8B5CF6;
+  --accent-fill-ink: #FFFFFF;
+  --accent-soft: rgba(139, 92, 246, 0.14);
+  --accent-soft-2: rgba(139, 92, 246, 0.22);
+  --accent-line: rgba(139, 92, 246, 0.32);
+  --accent-ink: #DDD6FE;
+
+  /* Brilhos decorativos de fundo — muito mais ténues que --accent-soft, senão
+     no tema claro leem-se como um anel em vez de um brilho. */
+  --glow: rgba(139, 92, 246, 0.05);
+  --glow-2: rgba(52, 211, 153, 0.04);
+
+  --ok: #52C285;
+  --ok-soft: rgba(82, 194, 133, 0.12);
+  --ok-soft-2: rgba(82, 194, 133, 0.20);
+  --ok-line: rgba(82, 194, 133, 0.32);
+
+  --info: #7098EE;
+  --info-soft: rgba(112, 152, 238, 0.12);
+  --info-soft-2: rgba(112, 152, 238, 0.20);
+  --info-line: rgba(112, 152, 238, 0.32);
+
+  --danger: #F87171;
+  --danger-soft: rgba(248, 113, 113, 0.12);
+  --danger-soft-2: rgba(248, 113, 113, 0.20);
+  --danger-line: rgba(248, 113, 113, 0.32);
+}
+
+@media (prefers-color-scheme: light), print {
+  :root {
+    --bg: #F5F7FB;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1F8;
+    --border: #E2E6EF;
+    --text: #131A2A;
+    --text-2: #4B5567;
+    --text-3: #8A93A6;
+    --overlay: rgba(19, 26, 42, 0.35);
+    --shadow: rgba(19, 26, 42, 0.08);
+    --bg-blur: rgba(245, 247, 251, 0.9);
+
+    /* No claro o acento escurece para ter contraste sobre branco, e os
+       preenchimentos aligeiram-se para não competirem com o texto. */
+    --accent: #7C3AED;
+    --accent-solid: #6D28D9;
+    --accent-soft: rgba(109, 40, 217, 0.08);
+    --accent-soft-2: rgba(109, 40, 217, 0.14);
+    --accent-line: rgba(109, 40, 217, 0.22);
+    --accent-ink: #5B21B6;
+    --glow: rgba(109, 40, 217, 0.035);
+    --glow-2: rgba(5, 150, 105, 0.03);
+
+    --ok: #146C43;
+    --ok-soft: rgba(20, 108, 67, 0.08);
+    --ok-soft-2: rgba(20, 108, 67, 0.14);
+    --ok-line: rgba(20, 108, 67, 0.22);
+
+    --info: #1D4ED8;
+    --info-soft: rgba(29, 78, 216, 0.08);
+    --info-soft-2: rgba(29, 78, 216, 0.14);
+    --info-line: rgba(29, 78, 216, 0.22);
+
+    --danger: #B91C1C;
+    --danger-soft: rgba(185, 28, 28, 0.08);
+    --danger-soft-2: rgba(185, 28, 28, 0.14);
+    --danger-line: rgba(185, 28, 28, 0.22);
+  }
+}
+
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #0a0a0f;
-  color: #f0f0f5;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }

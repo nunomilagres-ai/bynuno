@@ -52,17 +52,17 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex flex-col">
+    <div className="min-h-screen bg-bg flex flex-col">
 
       {/* Ambient glow */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[30%] w-[600px] h-[600px] bg-violet-600/5 rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] left-[30%] w-[600px] h-[600px] bg-glow rounded-full blur-[120px]" />
       </div>
 
       <div className="relative max-w-xl mx-auto w-full px-5 py-16 animate-fade-in">
 
         {/* Back */}
-        <Link to="/" className="inline-flex items-center gap-1.5 text-white/40 hover:text-white/70 text-sm mb-10 transition-colors no-underline">
+        <Link to="/" className="inline-flex items-center gap-1.5 text-muted hover:text-ink text-sm mb-10 transition-colors no-underline">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
@@ -72,54 +72,54 @@ export default function Profile() {
         {/* Avatar + email */}
         <div className="flex items-center gap-4 mb-10">
           {user.avatar_url
-            ? <img src={user.avatar_url} alt={user.name} className="w-16 h-16 rounded-full object-cover ring-2 ring-white/10" />
-            : <div className="w-16 h-16 rounded-full bg-violet-500/20 border border-violet-500/30 flex items-center justify-center text-2xl font-bold text-violet-300">
+            ? <img src={user.avatar_url} alt={user.name} className="w-16 h-16 rounded-full object-cover ring-2 ring-line" />
+            : <div className="w-16 h-16 rounded-full bg-accent-soft border border-accent-line flex items-center justify-center text-2xl font-bold text-accent-ink">
                 {(user.name || user.email || '?')[0].toUpperCase()}
               </div>
           }
           <div>
-            <p className="text-white font-semibold text-lg">{user.name}</p>
-            <p className="text-white/40 text-sm">{user.email}</p>
+            <p className="text-ink font-semibold text-lg">{user.name}</p>
+            <p className="text-muted text-sm">{user.email}</p>
           </div>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSave} className="space-y-5">
-          <h2 className="text-white font-semibold text-base mb-1">Editar perfil</h2>
+          <h2 className="text-ink font-semibold text-base mb-1">Editar perfil</h2>
 
           <div>
-            <label className="block text-xs font-medium text-white/50 uppercase tracking-widest mb-2">Nome</label>
+            <label className="block text-xs font-medium text-muted uppercase tracking-widest mb-2">Nome</label>
             <input
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-white/20 focus:outline-none focus:border-white/30 transition-colors"
+              className="w-full bg-surface border border-line rounded-xl px-4 py-3 text-ink text-sm placeholder-faint focus:outline-none focus:border-accent-line transition-colors"
               placeholder="O teu nome"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-white/50 uppercase tracking-widest mb-2">Bio</label>
+            <label className="block text-xs font-medium text-muted uppercase tracking-widest mb-2">Bio</label>
             <textarea
               value={bio}
               onChange={e => setBio(e.target.value)}
               rows={3}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-white/20 focus:outline-none focus:border-white/30 transition-colors resize-none"
+              className="w-full bg-surface border border-line rounded-xl px-4 py-3 text-ink text-sm placeholder-faint focus:outline-none focus:border-accent-line transition-colors resize-none"
               placeholder="Uma frase sobre ti (opcional)"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-white/50 uppercase tracking-widest mb-2">Email</label>
-            <div className="w-full bg-white/[0.03] border border-white/5 rounded-xl px-4 py-3 text-white/30 text-sm">
+            <label className="block text-xs font-medium text-muted uppercase tracking-widest mb-2">Email</label>
+            <div className="w-full bg-surface-2 border border-line rounded-xl px-4 py-3 text-faint text-sm">
               {user.email}
             </div>
-            <p className="mt-1.5 text-xs text-white/20">O email é gerido pela tua conta Google.</p>
+            <p className="mt-1.5 text-xs text-faint">O email é gerido pela tua conta Google.</p>
           </div>
 
           {error && (
-            <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+            <div className="px-4 py-3 rounded-xl bg-danger-soft border border-danger-line text-danger text-sm">
               {error}
             </div>
           )}
@@ -128,19 +128,19 @@ export default function Profile() {
             <button
               type="submit"
               disabled={saving}
-              className="px-5 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-white/90 disabled:opacity-50 transition-all"
+              className="px-5 py-2.5 rounded-xl bg-ink text-bg text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all"
             >
               {saving ? 'A guardar…' : 'Guardar'}
             </button>
-            {saved && <span className="text-emerald-400 text-sm">Guardado!</span>}
+            {saved && <span className="text-ok text-sm">Guardado!</span>}
           </div>
         </form>
 
         {/* Logout */}
-        <div className="mt-14 pt-8 border-t border-white/5">
+        <div className="mt-14 pt-8 border-t border-line">
           <button
             onClick={logout}
-            className="text-sm text-white/30 hover:text-white/60 transition-colors"
+            className="text-sm text-faint hover:text-muted transition-colors"
           >
             Terminar sessão
           </button>
