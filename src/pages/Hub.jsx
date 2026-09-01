@@ -330,10 +330,10 @@ export default function Hub() {
         <div className="absolute bottom-[-10%] right-[20%] w-[500px] h-[500px] bg-glow-2 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative flex-1 max-w-4xl mx-auto w-full px-5 py-16 flex flex-col">
+      <div className="relative flex-1 max-w-4xl mx-auto w-full px-5 py-10 flex flex-col">
 
         {/* Header */}
-        <header className="mb-14 animate-fade-in">
+        <header className="mb-8 animate-fade-in">
           <div className="flex items-center justify-between mb-6">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-faint">bynuno.com</span>
             <div className="flex items-center gap-3">
@@ -341,14 +341,11 @@ export default function Hub() {
               <UserAvatar />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-ink leading-tight tracking-tight mb-3">
-            Ferramentas<br />
-            <span className="text-muted">feitas por mim,</span><br />
-            <span className="text-muted">para mim.</span>
+          <h1 className="text-3xl font-bold text-ink leading-tight tracking-tight mb-2">
+            Ferramentas <span className="text-muted">feitas por mim, para mim.</span>
           </h1>
-          <p className="text-muted text-base leading-relaxed mt-4 max-w-md">
-            Um conjunto de aplicações pessoais para gerir saúde,
-            finanças e hábitos do dia-a-dia.
+          <p className="text-muted text-base leading-relaxed">
+            Um conjunto de aplicações pessoais para gerir saúde, finanças e hábitos do dia-a-dia.
           </p>
         </header>
 
