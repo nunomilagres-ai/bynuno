@@ -1,4 +1,4 @@
-// ─── bynuno Hub ───────────────────────────────────────────────────────────────
+// â”€â”€â”€ bynuno Hub â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../lib/AuthContext';
@@ -6,29 +6,37 @@ import DonateModal from '../components/DonateModal';
 
 const BYNUNO_NOTES = [
   {
+    version: '1.7',
+    date: '2026-09-24',
+    title: 'Collections & Condo',
+    items: [
+      'Nova app collections.bynuno.com para gestao de colecoes pessoais',
+      'Nova app condo.bynuno.com para gestao documental e financeira do condominio',
+    ],
+  },
+  {
     version: '1.6',
     date: '2026-06-16',
-    title: 'Notes — calendário, recorrência e dashboard',
+    title: 'Notes â€” calendario, recorrencia e dashboard',
     items: [
-      'Calendário mensal com pontos por dia (notas 🟡 e lembretes 🔴)',
-      'Tarefas recorrentes: diária, semanal, mensal e anual — próxima ocorrência criada automaticamente',
-      'Dashboard de tarefas com secções Vencidas / Hoje / Futuras',
-      'Criar tarefas diretamente dentro de cada nota (com recorrência)',
-      '60 emojis organizados por categoria: Saúde, Finanças, Férias, Entretenimento, Casa',
+      'Calendario mensal com pontos por dia (notas e lembretes)',
+      'Tarefas recorrentes: diaria, semanal, mensal e anual',
+      'Dashboard de tarefas com seccoes Vencidas / Hoje / Futuras',
+      'Criar tarefas diretamente dentro de cada nota (com recorrencia)',
+      '60 emojis organizados por categoria',
       'Hora opcional nos lembretes; datas no passado permitidas',
-      'Sidebar de temas colapsável com dropdown de tema quando escondida',
-      'Editar lembretes inline, visão "Todas as notas" e "Geral" alinhadas à esquerda',
+      'Sidebar de temas colapsavel com dropdown de tema quando escondida',
     ],
   },
   {
     version: '1.5',
     date: '2026-06-15',
-    title: 'Notes — notas pessoais com IA',
+    title: 'Notes â€” notas pessoais com IA',
     items: [
       'Nova app notes.bynuno.com para notas pessoais organizadas por temas',
-      'Temas personalizados com emoji e cor (ex: "Filmes", "Presentes de Natal 2026", "Viagens")',
+      'Temas personalizados com emoji e cor',
       'Editor Markdown com preview e auto-save',
-      'Lembretes/tarefas com notificações nativas do browser',
+      'Lembretes/tarefas com notificacoes nativas do browser',
       'IA: fotografa uma nota manuscrita e Claude Vision transcreve e classifica automaticamente',
     ],
   },
@@ -37,55 +45,53 @@ const BYNUNO_NOTES = [
     date: '2026-03-28',
     title: 'CV Builder',
     items: [
-      'Nova app cvbuilder.bynuno.com para organizar formação académica e profissional',
+      'Nova app cvbuilder.bynuno.com para organizar formacao academica e profissional',
       'Upload de diplomas e certificados (PDF, JPEG, PNG) direto para o Google Drive',
-      'Extração inteligente de dados com Claude AI (nome, instituição, datas, tipo)',
-      'Timeline visual cronológica com filtros por tipo de formação',
-      'Exportação em PDF e partilha pública da timeline',
+      'Extracao inteligente de dados com Claude AI',
+      'Timeline visual cronologica com filtros por tipo de formacao',
+      'Exportacao em PDF e partilha publica da timeline',
     ],
   },
   {
     version: '1.3',
     date: '2026-03-26',
-    title: 'Mently — login e horóscopo',
+    title: 'Mently â€” login e horoscopo',
     items: [
-      'Corrigido loop de login no Mently causado por conflito de cookies session_id',
-      'Autenticação do Mently delegada ao byNuno Hub (cookie partilhado Domain=.bynuno.com)',
-      'Horóscopos gerados com Claude ficam agora guardados em D1 (cross-device)',
-      'Cache por camadas: localStorage → D1 → Claude — sem chamadas redundantes à API',
+      'Corrigido loop de login no Mently',
+      'Autenticacao do Mently delegada ao byNuno Hub',
+      'Horoscopos gerados com Claude ficam agora guardados em D1 (cross-device)',
+      'Cache por camadas: localStorage -> D1 -> Claude',
     ],
   },
   {
     version: '1.2',
     date: '2026-03-25',
-    title: 'Lançamento do LEGO MOC',
+    title: 'Lancamento do LEGO MOC',
     items: [
       'Nova app lego.bynuno.com para projetos LEGO de monumentos portugueses',
-      'Upload de fotos de referência e progresso de construção',
+      'Upload de fotos de referencia e progresso de construcao',
       'Paleta de cores LEGO oficial',
-      'Análise IA com sugestões baseadas nas fotos reais',
-      'Gerador de posts para Instagram em português',
+      'Analise IA com sugestoes baseadas nas fotos reais',
     ],
   },
   {
     version: '1.1',
     date: '2026-03-24',
-    title: 'Autenticação centralizada + MediaVault',
+    title: 'Autenticacao centralizada + MediaVault',
     items: [
-      'Login Google OAuth unificado para todas as aplicações',
-      'Cookie de sessão partilhado em *.bynuno.com',
-      'Perfil centralizado com nome e bio editáveis',
-      'Redirecionamento pós-login para a app de origem',
-      'Lançamento do MediaVault (gestão de coleção de filmes e séries)',
+      'Login Google OAuth unificado para todas as aplicacoes',
+      'Cookie de sessao partilhado em *.bynuno.com',
+      'Perfil centralizado com nome e bio editaveis',
+      'Lancamento do MediaVault',
     ],
   },
   {
     version: '1.0',
     date: '2025-01-01',
-    title: 'Hub de aplicações',
+    title: 'Hub de aplicacoes',
     items: [
-      'Página central para aceder a Mently, Cashly e PIM',
-      'Cartões de aplicação com estado e descrição',
+      'Pagina central para aceder a Mently, Cashly e PIM',
+      'Cartoes de aplicacao com estado e descricao',
     ],
   },
 ];
@@ -103,7 +109,7 @@ function InfoModal({ open, onClose }) {
           </div>
           <button onClick={onClose}
             className="text-faint hover:text-muted w-7 h-7 flex items-center justify-center rounded-lg hover:bg-surface-2 transition-all text-lg leading-none">
-            ✕
+            x
           </button>
         </div>
         <div className="space-y-7">
@@ -118,7 +124,7 @@ function InfoModal({ open, onClose }) {
               <ul className="space-y-1">
                 {n.items.map((item, i) => (
                   <li key={i} className="text-xs text-muted flex gap-2">
-                    <span className="text-accent flex-shrink-0 mt-0.5">·</span>
+                    <span className="text-accent flex-shrink-0 mt-0.5">.</span>
                     {item}
                   </li>
                 ))}
@@ -135,106 +141,130 @@ const APPS = [
   {
     id: 'mently',
     name: 'Mently',
-    tagline: 'Saúde & bem-estar',
-    description: 'Análises laboratoriais, nutrição, sono, exercício e peso. O teu painel de saúde pessoal.',
+    tagline: 'Saude & bem-estar',
+    description: 'Analises laboratoriais, nutricao, sono, exercicio e peso. O teu painel de saude pessoal.',
     url: 'https://mently.bynuno.com',
-    emoji: '🩺',
+    emoji: 'ðŸ©º',
     gradient: 'from-emerald-500/20 to-teal-600/20',
     glow: 'shadow-emerald-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-emerald-500/20 text-emerald-400',
   },
   {
     id: 'cashly',
     name: 'Cashly',
-    tagline: 'Gestão financeira',
-    description: 'Contas bancárias, facturas, orçamentos, fluxo de caixa e resultados. Controlo financeiro completo.',
+    tagline: 'Gestao financeira',
+    description: 'Contas bancarias, facturas, orcamentos, fluxo de caixa e resultados. Controlo financeiro completo.',
     url: 'https://cashly.bynuno.com',
-    emoji: '💰',
+    emoji: 'ðŸ’°',
     gradient: 'from-amber-500/20 to-orange-600/20',
     glow: 'shadow-amber-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
     id: 'pim',
     name: 'PIM',
-    tagline: 'Gestão de produtos',
-    description: 'Catálogo de produtos, vendas, análise de margens e integração com o Vinted.',
+    tagline: 'Gestao de produtos',
+    description: 'Catalogo de produtos, vendas, analise de margens e integracao com o Vinted.',
     url: 'https://pim.bynuno.com',
-    emoji: '📦',
+    emoji: 'ðŸ“¦',
     gradient: 'from-violet-500/20 to-purple-600/20',
     glow: 'shadow-violet-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-violet-500/20 text-violet-400',
   },
   {
     id: 'mediavault',
     name: 'MediaVault',
-    tagline: 'Coleção de filmes & séries',
-    description: 'Regista a tua coleção de DVDs e séries gravadas. Acompanha episódios vistos, legendas e suporte físico.',
+    tagline: 'Colecao de filmes & series',
+    description: 'Regista a tua colecao de DVDs e series gravadas. Acompanha episodios vistos, legendas e suporte fisico.',
     url: 'https://mediavault.bynuno.com',
-    emoji: '🎬',
+    emoji: 'ðŸŽ¬',
     gradient: 'from-blue-500/20 to-indigo-600/20',
     glow: 'shadow-blue-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-blue-500/20 text-blue-400',
   },
   {
     id: 'lego',
     name: 'LEGO MOC',
     tagline: 'Maquetes de monumentos',
-    description: 'Regista projetos LEGO MOC de monumentos portugueses. Fotos de referência, evolução da construção, paleta de cores e sugestões com IA.',
+    description: 'Regista projetos LEGO MOC de monumentos portugueses. Fotos de referencia, evolucao da construcao, paleta de cores e sugestoes com IA.',
     url: 'https://lego.bynuno.com',
-    emoji: '🧱',
+    emoji: 'ðŸ§±',
     gradient: 'from-amber-500/20 to-yellow-600/20',
     glow: 'shadow-amber-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
     id: 'cvbuilder',
     name: 'CV Builder',
-    tagline: 'Formação & timeline',
-    description: 'Carrega diplomas e certificados. A IA extrai os dados automaticamente e organiza a tua formação numa timeline visual.',
+    tagline: 'Formacao & timeline',
+    description: 'Carrega diplomas e certificados. A IA extrai os dados automaticamente e organiza a tua formacao numa timeline visual.',
     url: 'https://cvbuilder.bynuno.com',
-    emoji: '📋',
+    emoji: 'ðŸ“‹',
     gradient: 'from-indigo-500/20 to-violet-600/20',
     glow: 'shadow-indigo-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-indigo-500/20 text-indigo-400',
   },
   {
     id: 'notes',
     name: 'Notes',
     tagline: 'Notas pessoais',
-    description: 'Notas por temas ("Filmes", "Presentes de Natal", "Viagens…"), editor Markdown, lembretes com notificações e digitalização de notas manuscritas com IA.',
+    description: 'Notas por temas, editor Markdown, lembretes com notificacoes e digitalizacao de notas manuscritas com IA.',
     url: 'https://notes.bynuno.com',
-    emoji: '🗒️',
+    emoji: 'ðŸ—’ï¸',
     gradient: 'from-amber-500/20 to-orange-600/20',
     glow: 'shadow-amber-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
     id: 'agenda',
     name: 'Agenda',
-    tagline: 'Calendário pessoal',
-    description: 'Vista mensal ao estilo Outlook, localizações coloridas por cidade e eventos correntes.',
+    tagline: 'Calendario pessoal',
+    description: 'Vista mensal ao estilo Outlook, localizacoes coloridas por cidade e eventos correntes.',
     url: 'https://agenda.bynuno.com',
-    emoji: '🗓️',
+    emoji: 'ðŸ—“ï¸',
     gradient: 'from-blue-500/20 to-cyan-600/20',
     glow: 'shadow-blue-500/10',
-    badge: 'Disponível',
+    badge: 'Disponivel',
     badgeColor: 'bg-blue-500/20 text-blue-400',
+  },
+  {
+    id: 'collections',
+    name: 'Collections',
+    tagline: 'Colecoes pessoais',
+    description: 'Organiza as tuas colecoes â€” livros, discos, jogos, ou qualquer outra coisa. Itens, notas e imagens num so lugar.',
+    url: 'https://collections.bynuno.com',
+    emoji: 'ðŸ—‚ï¸',
+    gradient: 'from-rose-500/20 to-pink-600/20',
+    glow: 'shadow-rose-500/10',
+    badge: 'Disponivel',
+    badgeColor: 'bg-rose-500/20 text-rose-400',
+  },
+  {
+    id: 'condo',
+    name: 'Condo',
+    tagline: 'Gestao do condominio',
+    description: 'Documentos, quotas, despesas e comunicacoes do condominio. Tudo organizado e acessivel.',
+    url: 'https://condo.bynuno.com',
+    emoji: 'ðŸ¢',
+    gradient: 'from-slate-500/20 to-zinc-600/20',
+    glow: 'shadow-slate-500/10',
+    badge: 'Disponivel',
+    badgeColor: 'bg-slate-500/20 text-slate-400',
   },
   {
     id: 'future',
     name: 'Em breve',
-    tagline: 'Próxima app',
-    description: 'Novas ferramentas pessoais a caminho. Feitas com cuidado, para uso diário.',
+    tagline: 'Proxima app',
+    description: 'Novas ferramentas pessoais a caminho. Feitas com cuidado, para uso diario.',
     url: null,
-    emoji: '✦',
+    emoji: 'âœ¦',
     gradient: 'from-slate-700/20 to-slate-600/20',
     glow: '',
     badge: 'Em breve',
@@ -244,7 +274,6 @@ const APPS = [
 
 function AppCard({ app, index }) {
   const style = { animationDelay: `${index * 100}ms`, animationFillMode: 'both' }
-
   const content = (
     <div
       className={`
@@ -255,24 +284,17 @@ function AppCard({ app, index }) {
       `}
       style={style}
     >
-      {/* Badge — cor própria por app: identidade/etiqueta, não tema da página */}
       <span className={`absolute top-4 right-4 text-xs font-medium px-2 py-0.5 rounded-full ${app.badgeColor}`}>
         {app.badge}
       </span>
-
-      {/* Icon */}
       <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl mb-4 select-none bg-gradient-to-br ${app.gradient}`}>
         {app.emoji}
       </div>
-
-      {/* Text */}
       <div className="mb-1 flex items-baseline gap-2">
         <h2 className="text-lg font-semibold text-ink">{app.name}</h2>
       </div>
       <p className="text-xs font-medium text-muted uppercase tracking-widest mb-3">{app.tagline}</p>
       <p className="text-sm text-muted leading-relaxed flex-1">{app.description}</p>
-
-      {/* Arrow */}
       {app.url && (
         <div className="mt-5 flex items-center gap-1.5 text-sm font-medium text-muted group-hover:text-ink transition-colors">
           <span>Abrir</span>
@@ -283,10 +305,7 @@ function AppCard({ app, index }) {
       )}
     </div>
   )
-
-  if (app.url) {
-    return <a href={app.url} className="block no-underline">{content}</a>
-  }
+  if (app.url) return <a href={app.url} className="block no-underline">{content}</a>
   return <div>{content}</div>
 }
 
@@ -323,16 +342,11 @@ export default function Hub() {
   const [donateOpen, setDonateOpen] = useState(false);
   return (
     <div className="min-h-screen bg-bg flex flex-col">
-
-      {/* Ambient background glow */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-20%] left-[30%] w-[600px] h-[600px] bg-glow rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[20%] w-[500px] h-[500px] bg-glow-2 rounded-full blur-[120px]" />
       </div>
-
       <div className="relative flex-1 max-w-4xl mx-auto w-full px-5 py-10 flex flex-col">
-
-        {/* Header */}
         <header className="mb-8 animate-fade-in">
           <div className="flex items-center justify-between mb-6">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-faint">bynuno.com</span>
@@ -345,30 +359,24 @@ export default function Hub() {
             Ferramentas <span className="text-muted">feitas por mim, para mim.</span>
           </h1>
           <p className="text-muted text-base leading-relaxed">
-            Um conjunto de aplicações pessoais para gerir saúde, finanças e hábitos do dia-a-dia.
+            Um conjunto de aplicacoes pessoais para gerir saude, financas e habitos do dia-a-dia.
           </p>
         </header>
-
-        {/* App grid — 3x3 em ecrãs largos, para não obrigar a scroll longo com 9 apps */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1 content-start items-stretch">
           {APPS.map((app, i) => (
             <AppCard key={app.id} app={app} index={i} />
           ))}
         </div>
-
-        {/* Footer */}
         <footer className="mt-16 text-center animate-fade-in" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
           <button
             onClick={() => setDonateOpen(true)}
             className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-line text-faint text-xs hover:text-muted hover:border-accent-line transition-all"
           >
-            <span>💜</span> Apoiar o projeto
+            <span>ðŸ’œ</span> Apoiar o projeto
           </button>
-          <p className="text-faint text-xs">feito com ♥ por nuno</p>
+          <p className="text-faint text-xs">feito com â™¥ por nuno</p>
         </footer>
-
       </div>
-
       <DonateModal open={donateOpen} onClose={() => setDonateOpen(false)} />
     </div>
   )
